@@ -1,0 +1,8 @@
+[
+{
+  "directory": "/home/nandu/projects/ai/backend/build",
+  "command": "/usr/bin/c++ -DHAS_YAML_CPP -isystem /usr/include/jsoncpp -std=c++17 -Wall -Wextra -Wpedantic -o CMakeFiles/universe_api.dir/src/main.cc.o -c /home/nandu/projects/ai/backend/src/main.cc",
+  "file": "/home/nandu/projects/ai/backend/src/main.cc",
+  "output": "CMakeFiles/universe_api.dir/src/main.cc.o"
+}
+]
