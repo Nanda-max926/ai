@@ -1,6 +1,7 @@
 
 #include <drogon/drogon.h>
-
+#include "controllers/AuthController.h"
+#include "services/PasswordService.h"
 #include <functional>
 #include <memory>
 #include <utility>
@@ -14,6 +15,18 @@ int main()
 {
     // Load configuration.
     app().loadConfigFile("config/config.json");
+        
+if (!universe::services::PasswordService::initialize())
+{
+    LOG_FATAL << "Failed to initialize password hashing";
+    return 1;
+}
+
+// Enable server-side sessions for 8 hours.
+app().enableSession(
+    8 * 60 * 60,
+    Cookie::SameSite::kLax
+);
 
     // =========================================
     // TEST 1: BACKEND HEALTH
@@ -160,7 +173,7 @@ int main()
     // =========================================
     // START SERVER
     // =========================================
-
+      universe::controllers::AuthController::registerRoutes();
     LOG_INFO << "====================================";
     LOG_INFO << "       UniVerse University Portal";
     LOG_INFO << "       C++ Backend Started";
