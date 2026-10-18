@@ -708,3 +708,54 @@ button {
     padding: 23px;
   }
 }
+/* =====================================
+   UNIVERSE ADMIN SIDEBAR FIX
+===================================== */
+
+.admin-sidebar .admin-nav {
+  appearance: none;
+  -webkit-appearance: none;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 12px 14px;
+  margin: 3px 0;
+  border: none;
+  border-radius: 9px;
+  background: transparent;
+  color: #cbd5e1;
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  text-align: left;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.admin-sidebar .admin-nav span {
+  color: inherit;
+}
+
+.admin-sidebar .admin-nav:hover {
+  background: #1d3155;
+  color: #e5edff;
+}
+
+.admin-sidebar .admin-nav.active {
+  background: #304879;
+  color: #eaf0ff;
+}
+
+.admin-sidebar .admin-nav:focus-visible {
+  outline: 2px solid #91a9ff;
+  outline-offset: 2px;
+}
+
+/* Keep dropdown choices readable */
+select,
+select option {
+  color: #243755 !important;
+  background-color: #ffffff !important;
+}

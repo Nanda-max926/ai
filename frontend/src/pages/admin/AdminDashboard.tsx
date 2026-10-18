@@ -1,6 +1,10 @@
 
 import { useEffect, useState, type FormEvent } from "react";
-
+import DepartmentManagement from "./DepartmentManagement";
+import AcademicManagement from "./AcademicManagement";
+import TimetableManagement from "./TimetableManagement";
+import AttendanceManagement from "./AttendanceManagement";
+import ExaminationsManagement from "./ExaminationsManagement";
 import {
   createStudent,
   createFaculty,
@@ -15,24 +19,27 @@ interface Props {
   onLogout: () => void;
 }
 
-type Page = "overview" | "students" | "faculty";
- 
- type AccountResultData = {
-  loginId: string;
-  role: string;
-  status: string;
-};
+type Page =
+  | "overview"
+  | "students"
+  | "faculty"
+  | "departments"
+  | "academic"
+  | "timetable"
+  | "attendance"
+  | "examinations";
+
 
 function AccountResult({
   createdAccount,
 }: {
-  createdAccount: AccountResultData | null;
+     createdAccount: CreatedAccount | null;
 }) {
   if (!createdAccount) return null;
 
   return (
     <div className="account-result">
-      <strong>New account created</strong>
+      <strong>Account created successfully!</strong>
 
       <p>Generated Login ID</p>
       <h2>{createdAccount.loginId}</h2>
@@ -41,8 +48,25 @@ function AccountResult({
       <p>Status: {createdAccount.status}</p>
 
       <div className="result-warning">
-        Give the temporary password securely to the account holder.
-        It is not displayed again here.
+        <strong>Temporary Password</strong>
+        <h2>{createdAccount.temporaryPassword}</h2>
+
+        <p>
+          Expires in {createdAccount.temporaryPasswordExpiresInHours} hours.
+        </p>
+
+        <p>Copy this password now. It will not be displayed again after leaving this result.</p>
+
+        <button
+          type="button"
+          onClick={() =>
+            navigator.clipboard.writeText(
+              createdAccount.temporaryPassword
+            )
+          }
+        >
+          Copy Temporary Password
+        </button>
       </div>
     </div>
   );
@@ -184,59 +208,111 @@ export default function AdminDashboard({ user, onLogout }: Props) {
     overview: "Administration Overview",
     students: "Create Student Account",
     faculty: "Create Faculty Account",
+    departments: "Department Management",
+    academic: "Academic Management",
+    timetable: "Timetable Management",
+    attendance: "Attendance Management",
+    examinations: "Examinations & Results",
   };
 
   return (
-    <div className="admin-shell">
+                                          
+<div className="admin-shell">
+  <aside className="admin-sidebar">
+    <div className="admin-brand">
+      <div className="brand-mark">U</div>
+      <div>
+        <strong>UniVerse</strong>
+        <small>ADMIN CONSOLE</small>
+      </div>
+    </div>
 
-      <aside className="admin-sidebar">
+    <p className="admin-nav-label">ADMINISTRATION</p>
 
-        <div className="admin-brand">
-          <div className="brand-mark">U</div>
+    <button
+      type="button"
+      className={`admin-nav ${page === "overview" ? "active" : ""}`}
+      onClick={() => setPage("overview")}
+    >
+      <span>⌂</span>
+      <span>Overview</span>
+    </button>
 
-          <div>
-            <strong>UniVerse</strong>
-            <small>ADMIN CONSOLE</small>
-          </div>
+    <button
+      type="button"
+      className={`admin-nav ${page === "departments" ? "active" : ""}`}
+      onClick={() => setPage("departments")}
+    >
+      <span>🏢</span>
+      <span>Manage Departments</span>
+    </button>
+
+    <button
+      type="button"
+      className={`admin-nav ${page === "academic" ? "active" : ""}`}
+      onClick={() => setPage("academic")}
+    >
+      <span>🎓</span>
+      <span>Academic Management</span>
+    </button>
+
+    <button
+      type="button"
+      className={`admin-nav ${page === "timetable" ? "active" : ""}`}
+      onClick={() => setPage("timetable")}
+    >
+      <span>📅</span>
+      <span>Timetable Management</span>
+    </button>
+
+    <button
+      type="button"
+      className={`admin-nav ${page === "attendance" ? "active" : ""}`}
+      onClick={() => setPage("attendance")}
+    >
+      <span>📋</span>
+      <span>Attendance Management</span>
+    </button>
+
+    <button
+      type="button"
+      className={`admin-nav ${page === "examinations" ? "active" : ""}`}
+      onClick={() => setPage("examinations")}
+    >
+      <span>📝</span>
+      <span>Examinations & Results</span>
+    </button>
+
+    <button
+      type="button"
+      className={`admin-nav ${page === "students" ? "active" : ""}`}
+      onClick={() => setPage("students")}
+    >
+      <span>👨‍🎓</span>
+      <span>Create Student</span>
+    </button>
+
+    <button
+      type="button"
+      className={`admin-nav ${page === "faculty" ? "active" : ""}`}
+      onClick={() => setPage("faculty")}
+    >
+      <span>👨‍🏫</span>
+      <span>Create Faculty</span>
+    </button>
+
+    <div className="admin-sidebar-bottom">
+      <div className="admin-profile">
+        <div className="avatar">AD</div>
+        <div>
+          <strong>{user.loginId}</strong>
+          <small>Administrator</small>
         </div>
+      </div>
+    </div>   
+</aside>
 
-        <p className="admin-nav-label">ADMINISTRATION</p>
-
-        <button
-          className={page === "overview" ? "admin-nav active" : "admin-nav"}
-          onClick={() => changePage("overview")}
-        >
-          <span>⌂</span> Overview
-        </button>
-
-        <button
-          className={page === "students" ? "admin-nav active" : "admin-nav"}
-          onClick={() => changePage("students")}
-        >
-          <span>♙</span> Create Student
-        </button>
-
-        <button
-          className={page === "faculty" ? "admin-nav active" : "admin-nav"}
-          onClick={() => changePage("faculty")}
-        >
-          <span>♟</span> Create Faculty
-        </button>
-
-        <div className="admin-sidebar-bottom">
-          <div className="admin-profile">
-            <div className="avatar">AD</div>
-
-            <div>
-              <strong>{user.loginId}</strong>
-              <small>Administrator</small>
-            </div>
-          </div>
-        </div>
-
-      </aside>
-
-      <main className="admin-main">
+<main className="admin-main">
 
         <header className="admin-topbar">
           <div>
@@ -567,9 +643,15 @@ export default function AdminDashboard({ user, onLogout }: Props) {
 
           )}
 
-          <footer className="admin-footer">
-            UniVerse University Management System · Admin Console
-          </footer>
+          {page === "departments" && <DepartmentManagement />}
+          {page === "academic" && <AcademicManagement />}
+          {page === "timetable" && <TimetableManagement />}
+          {page === "attendance" && <AttendanceManagement />}
+          {page === "examinations" && <ExaminationsManagement />}
+
+              <footer className="admin-footer">
+                      UniVerse University Management System · Admin Console
+                       </footer>
 
         </div>
       </main>

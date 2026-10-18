@@ -3,6 +3,13 @@
 #include "controllers/AdminController.h"
 #include "controllers/AuthController.h"
 #include "services/PasswordService.h"
+#include "controllers/DepartmentController.h"
+#include "controllers/StudentController.h"
+#include "controllers/AcademicController.h"
+#include "controllers/CalendarController.h"
+#include "controllers/TimetableController.h"
+#include "controllers/AttendanceController.h"
+#include "controllers/ExamController.h"
 #include <functional>
 #include <memory>
 #include <utility>
@@ -174,8 +181,15 @@ app().enableSession(
     // =========================================
     // START SERVER
     // =========================================
+    universe::controllers::ExamController::registerRoutes();
+    universe::controllers::AttendanceController::registerRoutes();
+    universe::controllers::CalendarController::registerRoutes();
+      universe::controllers::TimetableController::registerRoutes();
+      universe::controllers::AcademicController::registerRoutes();
       universe::controllers::AdminController::registerRoutes();
       universe::controllers::AuthController::registerRoutes();
+      universe::controllers::DepartmentController::registerRoutes();
+      universe::controllers::StudentController::registerRoutes();
     LOG_INFO << "====================================";
     LOG_INFO << "       UniVerse University Portal";
     LOG_INFO << "       C++ Backend Started";

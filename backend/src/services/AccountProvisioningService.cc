@@ -28,7 +28,7 @@ void AccountProvisioningService::createStudent(
         WITH generated AS (
             SELECT
                'AP' ||
-               RIGHT($6::text, 2) ||
+               RIGHT($6::integer::text, 2) ||
                   LPAD(
                     NEXTVAL('student_registration_seq')::text,
                         7,
@@ -42,18 +42,18 @@ void AccountProvisioningService::createStudent(
                 password_hash,
                 role,
                 status,
-                must_change_password
+                must_change_password,
                 temporary_password_expires_at
             )
-            SELECT
-                generated.login_id,
-                $1,
-                $2,
-                'student'::app_role,
-                'active'::account_status,
-                CURRENT_TIMESTAMP + INTERVAL '24 hours'
-                TRUE
-            FROM generated
+                  SELECT
+            generated.login_id,
+            $1,
+            $2,
+            'student'::app_role,
+            'active'::account_status,
+            TRUE,
+            CURRENT_TIMESTAMP + INTERVAL '24 hours'
+        FROM generated
             RETURNING id, login_id
         ),
         new_profile AS (
@@ -69,7 +69,7 @@ void AccountProvisioningService::createStudent(
                 id,
                 $3,
                 $4,
-                $5,
+                $5::integer,
                 $6,
                 $7
             FROM new_user

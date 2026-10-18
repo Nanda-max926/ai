@@ -32,15 +32,28 @@ add_executable(universe_api
     # Controllers
     src/controllers/AuthController.cc
     src/controllers/AdminController.cc
+    src/controllers/DepartmentController.cc
+   src/controllers/StudentController.cc
+    src/controllers/AcademicController.cc
+    src/controllers/TimetableController.cc
+    src/controllers/CalendarController.cc
+    src/controllers/AttendanceController.cc
+    src/controllers/ExamController.cc
 
     # Services
     src/services/AuthService.cc
     src/services/PasswordService.cc
     src/services/AccountProvisioningService.cc
     src/services/TemporaryPasswordGenerator.cc
+    src/services/DepartmentService.cc
+    src/services/TimetableService.cc
+    src/services/AcademicService.cc
 
     # Repositories
     src/repositories/UserRepository.cc
+    src/repositories/DepartmentRepository.cc
+    src/repositories/AcademicRepository.cc
+    src/repositories/TimetableRepository.cc
 )
 
 target_include_directories(universe_api

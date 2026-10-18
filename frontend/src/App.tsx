@@ -1,10 +1,10 @@
 
 import { useEffect, useState } from "react";
-
 import "./App.css";
 
 import Login from "./pages/auth/Login";
 import AdminDashboard from "./pages/admin/AdminDashboard";
+import StudentDashboard from "./pages/student/StudentDashboard";
 
 import {
   getCurrentUser,
@@ -20,21 +20,15 @@ function BasicRoleDashboard({
   onLogout: () => void;
 }) {
   const title =
-    user.role === "student"
-      ? "Student Portal"
-      : user.role === "faculty"
-      ? "Faculty Portal"
-      : "Department Portal";
+    user.role === "faculty" ? "Faculty Portal" : "Department Portal";
 
   return (
     <main className="basic-dashboard">
-
       <header className="basic-header">
         <div>
           <div className="brand-mark">U</div>
           <strong>UniVerse</strong>
         </div>
-
         <button className="logout-button" onClick={onLogout}>
           Sign out
         </button>
@@ -42,22 +36,17 @@ function BasicRoleDashboard({
 
       <section className="basic-welcome">
         <span>AUTHENTICATED ACCOUNT</span>
-
         <h1>Welcome, {user.loginId}</h1>
-
         <p>Your {title} account is authenticated.</p>
-
         <div className="basic-user-card">
           <p><strong>Account ID:</strong> {user.id}</p>
           <p><strong>Email:</strong> {user.email}</p>
           <p><strong>Role:</strong> {user.role}</p>
         </div>
-
         <p className="development-note">
-          Academic modules for this role are being developed next.
+          Faculty workspace is the next portal to be connected.
         </p>
       </section>
-
     </main>
   );
 }
@@ -71,19 +60,13 @@ function App() {
 
     getCurrentUser()
       .then((currentUser) => {
-        if (mounted) {
-          setUser(currentUser);
-        }
+        if (mounted) setUser(currentUser);
       })
       .catch(() => {
-        if (mounted) {
-          setUser(null);
-        }
+        if (mounted) setUser(null);
       })
       .finally(() => {
-        if (mounted) {
-          setCheckingSession(false);
-        }
+        if (mounted) setCheckingSession(false);
       });
 
     return () => {
@@ -112,29 +95,19 @@ function App() {
 
   if (!user) {
     return (
-      <Login
-        onLogin={(authenticatedUser) =>
-          setUser(authenticatedUser)
-        }
-      />
+      <Login onLogin={(authenticatedUser) => setUser(authenticatedUser)} />
     );
   }
 
   if (user.role === "admin") {
-    return (
-      <AdminDashboard
-        user={user}
-        onLogout={handleLogout}
-      />
-    );
+    return <AdminDashboard user={user} onLogout={handleLogout} />;
   }
 
-  return (
-    <BasicRoleDashboard
-      user={user}
-      onLogout={handleLogout}
-    />
-  );
+  if (user.role === "student") {
+    return <StudentDashboard user={user} onLogout={handleLogout} />;
+  }
+
+  return <BasicRoleDashboard user={user} onLogout={handleLogout} />;
 }
 
 export default App;

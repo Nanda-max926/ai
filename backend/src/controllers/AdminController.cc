@@ -251,27 +251,24 @@ void AdminController::createStudent(
         return;
     }
 
-          if (!validStringField(*json, "fullName", 150) ||
-            !validStringField(*json, "email", 254) ||
-            !validStringField(*json, "section", 20) ||
-            !(*json)["departmentId"].isInt64() ||
-            !(*json)["semester"].isInt() ||
-            !(*json)["batchYear"].isInt())
-        {
-            (*callbackPtr)(
-                sendError(k400BadRequest, "Invalid student details.")
-            );
-            return;
-        }
+    if (!validStringField(*json, "fullName", 150) ||
+        !validStringField(*json, "email", 254) ||
+        !validStringField(*json, "section", 20) ||
+        !(*json)["departmentId"].isInt64() ||
+        !(*json)["semester"].isInt() ||
+        !(*json)["batchYear"].isInt())
+    {
+        (*callbackPtr)(
+            sendError(k400BadRequest, "Invalid student details.")
+        );
+        return;
+    }
 
     const std::string fullName =
         (*json)["fullName"].asString();
 
     const std::string email =
         (*json)["email"].asString();
-
-    std::string password =
-        (*json)["temporaryPassword"].asString();
 
     const std::string section =
         (*json)["section"].asString();
@@ -286,55 +283,70 @@ void AdminController::createStudent(
         (*json)["batchYear"].asInt();
 
     if (!validEmail(email) ||
-        password.size() < 12 ||
-        password.size() > 1024 ||
         departmentId <= 0 ||
-        semester < 1 ||
-        semester > 8 ||
-        batchYear < 2000 ||
-        batchYear > 2100)
+        semester < 1 || semester > 8 ||
+        batchYear < 2000 || batchYear > 2100)
     {
-        wipeSecret(password);
-
         (*callbackPtr)(
             sendError(k400BadRequest, "Invalid student details.")
         );
+        return;
+    }
 
+    services::TemporaryPasswordGenerator generator;
+
+    std::string temporaryPassword;
+
+    if (!generator.generate(temporaryPassword))
+    {
+        (*callbackPtr)(
+            sendError(
+                k500InternalServerError,
+                "Temporary password generation failed."
+            )
+        );
         return;
     }
 
     std::string passwordHash;
 
-    if (!services::PasswordService::hashPassword(
-            password,
+    if (!services::PasswordService::hashTemporaryPassword(
+            temporaryPassword,
             passwordHash
         ))
     {
-        wipeSecret(password);
+        wipeSecret(temporaryPassword);
 
         (*callbackPtr)(
             sendError(
                 k500InternalServerError,
-                "Password hashing failed."
+                "Temporary password hashing failed."
             )
         );
-
         return;
     }
 
-    wipeSecret(password);
+    auto temporaryPasswordPtr =
+        std::make_shared<std::string>(
+            std::move(temporaryPassword)
+        );
+
+    auto passwordHashPtr =
+        std::make_shared<std::string>(
+            std::move(passwordHash)
+        );
 
     services::AccountProvisioningService::createStudent(
-
         email,
-        passwordHash,
+        *passwordHashPtr,
         fullName,
         departmentId,
         semester,
         batchYear,
         section,
 
-        [callbackPtr](long long userId, std::string loginId)
+        [callbackPtr, temporaryPasswordPtr, passwordHashPtr]
+        (long long userId, std::string loginId)
         {
             Json::Value account;
 
@@ -346,6 +358,14 @@ void AdminController::createStudent(
             account["status"] = "active";
             account["mustChangePassword"] = true;
 
+            account["temporaryPassword"] =
+                *temporaryPasswordPtr;
+
+            account["temporaryPasswordExpiresInHours"] = 24;
+
+            wipeSecret(*temporaryPasswordPtr);
+            wipeSecret(*passwordHashPtr);
+
             Json::Value body;
 
             body["status"] = "success";
@@ -355,15 +375,14 @@ void AdminController::createStudent(
             (*callbackPtr)(sendJson(k201Created, body));
         },
 
-        [callbackPtr](const orm::DrogonDbException &error)
+        [callbackPtr, temporaryPasswordPtr, passwordHashPtr]
+        (const orm::DrogonDbException &error)
         {
+            wipeSecret(*temporaryPasswordPtr);
+            wipeSecret(*passwordHashPtr);
+
             sendDatabaseError(callbackPtr, error);
         }
-    );
-
-    sodium_memzero(
-        passwordHash.data(),
-        passwordHash.size()
     );
 }
 
@@ -401,7 +420,6 @@ void AdminController::createFaculty(
 
     if (!validStringField(*json, "fullName", 150) ||
         !validStringField(*json, "email", 254) ||
-        !validStringField(*json, "temporaryPassword", 1024) ||
         !validStringField(*json, "designation", 100) ||
         !(*json)["departmentId"].isInt64())
     {
@@ -417,59 +435,72 @@ void AdminController::createFaculty(
     const std::string email =
         (*json)["email"].asString();
 
-    std::string password =
-        (*json)["temporaryPassword"].asString();
-
     const std::string designation =
         (*json)["designation"].asString();
 
     const std::int64_t departmentId =
         (*json)["departmentId"].asInt64();
 
-    if (!validEmail(email) ||
-        password.size() < 12 ||
-        password.size() > 1024 ||
-        departmentId <= 0)
+    if (!validEmail(email) || departmentId <= 0)
     {
-        wipeSecret(password);
-
         (*callbackPtr)(
             sendError(k400BadRequest, "Invalid faculty details.")
         );
+        return;
+    }
 
+    services::TemporaryPasswordGenerator generator;
+
+    std::string temporaryPassword;
+
+    if (!generator.generate(temporaryPassword))
+    {
+        (*callbackPtr)(
+            sendError(
+                k500InternalServerError,
+                "Temporary password generation failed."
+            )
+        );
         return;
     }
 
     std::string passwordHash;
 
-    if (!services::PasswordService::hashPassword(
-            password,
+    if (!services::PasswordService::hashTemporaryPassword(
+            temporaryPassword,
             passwordHash
         ))
     {
-        wipeSecret(password);
+        wipeSecret(temporaryPassword);
 
         (*callbackPtr)(
             sendError(
                 k500InternalServerError,
-                "Password hashing failed."
+                "Temporary password hashing failed."
             )
         );
-
         return;
     }
 
-    wipeSecret(password);
+    auto temporaryPasswordPtr =
+        std::make_shared<std::string>(
+            std::move(temporaryPassword)
+        );
+
+    auto passwordHashPtr =
+        std::make_shared<std::string>(
+            std::move(passwordHash)
+        );
 
     services::AccountProvisioningService::createFaculty(
-
         email,
-        passwordHash,
+        *passwordHashPtr,
         fullName,
         departmentId,
         designation,
 
-        [callbackPtr](long long userId, std::string loginId)
+        [callbackPtr, temporaryPasswordPtr, passwordHashPtr]
+        (long long userId, std::string loginId)
         {
             Json::Value account;
 
@@ -481,6 +512,14 @@ void AdminController::createFaculty(
             account["status"] = "active";
             account["mustChangePassword"] = true;
 
+            account["temporaryPassword"] =
+                *temporaryPasswordPtr;
+
+            account["temporaryPasswordExpiresInHours"] = 24;
+
+            wipeSecret(*temporaryPasswordPtr);
+            wipeSecret(*passwordHashPtr);
+
             Json::Value body;
 
             body["status"] = "success";
@@ -490,15 +529,14 @@ void AdminController::createFaculty(
             (*callbackPtr)(sendJson(k201Created, body));
         },
 
-        [callbackPtr](const orm::DrogonDbException &error)
+        [callbackPtr, temporaryPasswordPtr, passwordHashPtr]
+        (const orm::DrogonDbException &error)
         {
+            wipeSecret(*temporaryPasswordPtr);
+            wipeSecret(*passwordHashPtr);
+
             sendDatabaseError(callbackPtr, error);
         }
-    );
-
-    sodium_memzero(
-        passwordHash.data(),
-        passwordHash.size()
     );
 }
 
