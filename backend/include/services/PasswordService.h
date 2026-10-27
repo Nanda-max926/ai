@@ -13,9 +13,14 @@ public:
     static bool initialize();
 
     static bool hashPassword(
-        const std::string &password,
-        std::string &outputHash
-    );
+    const std::string &password,
+    std::string &outputHash
+);
+
+static bool hashTemporaryPassword(
+    const std::string &password,
+    std::string &outputHash
+);
 
     static bool verifyPassword(
         const std::string &password,

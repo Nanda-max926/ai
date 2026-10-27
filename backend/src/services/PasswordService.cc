@@ -1,4 +1,3 @@
-
 #include "services/PasswordService.h"
 
 #include <sodium.h>
@@ -6,21 +5,33 @@
 namespace universe::services
 {
 
-bool PasswordService::initialize()
+namespace
 {
-    return sodium_init() >= 0;
-}
 
-bool PasswordService::hashPassword(
+bool hashWithPolicy(
     const std::string &password,
-    std::string &outputHash
+    std::string &outputHash,
+    std::size_t minimumLength,
+    std::size_t maximumLength
 )
 {
-    if (password.size() < 12 ||
-        password.size() > 1024)
+    if (password.size() < minimumLength ||
+        password.size() > maximumLength)
     {
         return false;
     }
+
+    if (!outputHash.empty())
+    {
+        sodium_memzero(
+            outputHash.data(),
+            outputHash.size()
+        );
+        outputHash.clear();
+    }
+
+    if (sodium_init() < 0)
+        return false;
 
     char hash[crypto_pwhash_STRBYTES] = {};
 
@@ -45,6 +56,39 @@ bool PasswordService::hashPassword(
     return true;
 }
 
+}
+
+bool PasswordService::initialize()
+{
+    return sodium_init() >= 0;
+}
+
+bool PasswordService::hashPassword(
+    const std::string &password,
+    std::string &outputHash
+)
+{
+    return hashWithPolicy(
+        password,
+        outputHash,
+        12,
+        1024
+    );
+}
+
+bool PasswordService::hashTemporaryPassword(
+    const std::string &password,
+    std::string &outputHash
+)
+{
+    return hashWithPolicy(
+        password,
+        outputHash,
+        6,
+        6
+    );
+}
+
 bool PasswordService::verifyPassword(
     const std::string &password,
     const std::string &storedHash
@@ -65,4 +109,4 @@ bool PasswordService::verifyPassword(
     ) == 0;
 }
 
-}
+}  

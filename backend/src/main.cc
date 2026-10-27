@@ -1,5 +1,6 @@
 
 #include <drogon/drogon.h>
+#include "controllers/AdminController.h"
 #include "controllers/AuthController.h"
 #include "services/PasswordService.h"
 #include <functional>
@@ -173,6 +174,7 @@ app().enableSession(
     // =========================================
     // START SERVER
     // =========================================
+      universe::controllers::AdminController::registerRoutes();
       universe::controllers::AuthController::registerRoutes();
     LOG_INFO << "====================================";
     LOG_INFO << "       UniVerse University Portal";

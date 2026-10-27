@@ -2,10 +2,7 @@
 #include "repositories/UserRepository.h"
 
 #include <drogon/drogon.h>
-
 #include <utility>
-
-using namespace drogon;
 
 namespace universe::repositories
 {
@@ -16,9 +13,12 @@ void UserRepository::findByLoginId(
     ErrorCallback onError
 )
 {
-    auto database = app().getDbClient("default");
+    // Access the configured PostgreSQL client.
+    auto database = drogon::app().getDbClient("default");
 
+    // Find the account using a parameterized SQL query.
     database->execSqlAsync(
+
         "SELECT "
         "id, "
         "login_id, "
@@ -28,13 +28,54 @@ void UserRepository::findByLoginId(
         "status::text AS status, "
         "must_change_password "
         "FROM users "
-        "WHERE login_id = $1 OR email = $2 "
+        "WHERE LOWER(login_id) = LOWER($1) "
+        "OR LOWER(email) = LOWER($1) "
         "LIMIT 1",
 
-        std::move(onSuccess),
-        std::move(onError),
+        // SUCCESS CALLBACK
+        [onSuccess = std::move(onSuccess)]
+        (const drogon::orm::Result &result) mutable
+        {
+            if (result.empty())
+            {
+                onSuccess(std::nullopt);
+                return;
+            }
 
-        loginId,
+            const auto &row = result[0];
+
+            domain::User user;
+
+            user.id = row["id"].as<long long>();
+
+            user.loginId =
+                row["login_id"].as<std::string>();
+
+            user.email =
+                row["email"].as<std::string>();
+
+            user.passwordHash =
+                row["password_hash"].as<std::string>();
+
+            user.role =
+                row["role"].as<std::string>();
+
+            user.status =
+                row["status"].as<std::string>();
+
+            user.mustChangePassword =
+                row["must_change_password"].as<bool>();
+
+            onSuccess(std::move(user));
+        },
+
+        // ERROR CALLBACK
+        [onError = std::move(onError)]
+        (const drogon::orm::DrogonDbException &error) mutable
+        {
+            onError(error);
+        },
+
         loginId
     );
 }
