@@ -1,3 +1,0 @@
-/home/nandu/projects/ai/backend/build/CMakeFiles/universe_api.dir
-/home/nandu/projects/ai/backend/build/CMakeFiles/edit_cache.dir
-/home/nandu/projects/ai/backend/build/CMakeFiles/rebuild_cache.dir
