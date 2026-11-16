@@ -1,7 +1,8 @@
 #pragma once
 
 #include "repositories/AcademicRepository.h"
-
+#include <cstdint>
+#include <string>
 #include <memory>
 
 namespace universe::services
