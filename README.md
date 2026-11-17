@@ -1,89 +1,92 @@
-# universe-university-portal
-
-
 # UniVerse — University Management System
 
-<p align="center">
-  <strong>A Centralized Digital Platform for University Administration, Academics and Student Services</strong>
-</p>
+\<p align="center">   \<strong>A Centralized Digital Platform for University Administration, Academic Management and Student Services\</strong> \</p>
 
-<p align="center">
-  <img src="https://img.shields.io/badge/C%2B%2B-17-blue" alt="C++17">
-  <img src="https://img.shields.io/badge/Frontend-React%20%2B%20TypeScript-3178C6" alt="React and TypeScript">
-  <img src="https://img.shields.io/badge/Backend-Drogon-2E8B57" alt="Drogon">
-  <img src="https://img.shields.io/badge/Database-PostgreSQL-336791" alt="PostgreSQL">
-  <img src="https://img.shields.io/badge/Build-CMake-064F8C" alt="CMake">
-  <img src="https://img.shields.io/badge/License-MIT-green" alt="MIT License">
-</p>
+\<p align="center">   ![C++]\([https://img.shields.io/badge/C%2B%2B-17-blue](https://img.shields.io/badge/C%2B%2B-17-blue))   ![React]\([https://img.shields.io/badge/Frontend-React-61DAFB](https://img.shields.io/badge/Frontend-React-61DAFB))   ![TypeScript]\([https://img.shields.io/badge/TypeScript-3178C6](https://img.shields.io/badge/TypeScript-3178C6))   ![Drogon]\([https://img.shields.io/badge/Backend-Drogon-green](https://img.shields.io/badge/Backend-Drogon-green))   ![PostgreSQL]\([https://img.shields.io/badge/Database-PostgreSQL-336791](https://img.shields.io/badge/Database-PostgreSQL-336791))   ![CMake]\([https://img.shields.io/badge/Build-CMake-064F8C](https://img.shields.io/badge/Build-CMake-064F8C))   ![License]\([https://img.shields.io/badge/License-MIT-green](https://img.shields.io/badge/License-MIT-green)) \</p>
 
 ---
 
 ## 1. Introduction
 
-**UniVerse** is a web-based University Management System designed to bring major university operations together in one centralized digital platform.
+**UniVerse** is a web-based University Management System developed to simplify and centralize university administration and academic activities.
 
-Universities manage large amounts of academic and administrative information, including student records, faculty details, departments, courses, class sections, timetables, attendance, examinations and announcements. When these activities are handled through disconnected systems or manual processes, information becomes difficult to maintain, retrieve and coordinate.
+Universities handle large amounts of information related to students, faculty, departments, courses, academic programs, attendance, examinations, classrooms and timetables. Managing these activities through separate systems or manual processes can result in duplicated work, inconsistent records and difficulties accessing information.
 
-UniVerse aims to simplify these activities by providing a centralized system with role-based access for administrators, students and faculty.
+UniVerse aims to bring these operations together in one centralized platform.
 
-The project uses a **C++ backend** for server-side business logic and database operations, together with a React and TypeScript frontend for the user interface.
+The application provides separate interfaces for administrators, students and faculty members. It uses **C++ as the primary backend programming language**, PostgreSQL for data storage, and React with TypeScript for the frontend.
 
-**Repository:** https://github.com/Nanda-max926/ai
+The project demonstrates the practical application of Object-Oriented Programming, database management, REST API development, client-server architecture and modern web application development.
 
-## 2. Project Objectives
+**GitHub Repository:**
+[https://github.com/Nanda-max926/ai](https://github.com/Nanda-max926/ai)
+
+---
+
+## 2. Problem Statement
+
+University management involves several interconnected activities, including student registration, faculty management, department administration, course allocation, timetable scheduling, attendance recording and examination management.
+
+When these activities are handled manually or through disconnected systems, universities may experience:
+
+- Difficulty maintaining student and faculty records.
+- Repeated data entry and inconsistent information.
+- Problems coordinating academic departments.
+- Manual timetable preparation and classroom allocation.
+- Delayed access to academic information.
+- Difficulty tracking student attendance and examination records.
+- Inefficient communication between administrators, students and faculty.
+
+UniVerse addresses these challenges by providing a centralized digital platform where information can be managed, stored and accessed according to user roles.
+
+---
+
+## 3. Project Objectives
 
 The main objectives of UniVerse are:
 
-- Develop a centralized university information management platform.
-- Reduce dependency on disconnected or manual academic records.
-- Provide role-based authentication and access control.
-- Allow administrators to manage departments, users and academic structures.
-- Organize academic programs, courses and class sections.
-- Support classroom allocation and timetable management.
-- Provide students with a dedicated portal for academic information.
-- Establish a structured PostgreSQL database for university records.
-- Demonstrate the integration of C++, database programming, REST APIs and modern frontend development.
+1. Develop a centralized university management application.
+2. Implement secure role-based authentication.
+3. Provide separate portals for administrators, students and faculty.
+4. Manage student, faculty and department information.
+5. Organize academic programs, courses and class sections.
+6. Support classroom allocation and timetable management.
+7. Provide students with access to their academic information.
+8. Establish a structured relational database using PostgreSQL.
+9. Implement backend business logic using C++.
+10. Demonstrate practical Object-Oriented Programming concepts.
+11. Integrate frontend, backend and database components into one application.
 
-## 3. Problem Statement
+---
 
-University administration involves coordination between multiple departments, students, faculty members and academic activities.
-
-Traditional or disconnected management approaches can lead to:
-
-- Repeated data entry and inconsistent information.
-- Difficulty maintaining student and faculty records.
-- Manual coordination of courses, classrooms and timetables.
-- Delayed access to academic information.
-- Limited visibility into attendance and examination information.
-- Difficulty distributing announcements and university updates.
-
-UniVerse addresses these challenges by providing a common application through which university information can be managed and accessed according to the user's role.
-
-## 4. Main Modules
+## 4. Main Features and Modules
 
 ### 4.1 Authentication and User Management
 
 - Role-based login interface.
-- Student, faculty and administrator account types.
+- Administrator, student and faculty account types.
 - Backend authentication using C++.
 - Server-side session management.
-- Account status checks.
-- Password hashing using libsodium's password-hashing functionality.
+- Account status validation.
+- Password hashing using libsodium.
+- Separate dashboard access based on user roles.
 
 ### 4.2 Administrator Dashboard
 
-The administrator interface acts as the central management workspace.
+The administrator dashboard provides a centralized workspace for managing university operations.
 
-Its modules include:
+Features include:
 
 - Administration overview.
 - Student account creation.
 - Faculty account creation.
 - Department management.
-- Academic management.
+- Academic program management.
+- Course and subject management.
+- Section management.
 - Timetable management.
 - Attendance management.
-- Examinations and results.
+- Examination and result management.
 - Calendar and announcements.
 
 ### 4.3 Department Management
@@ -91,42 +94,44 @@ Its modules include:
 - Maintain university departments.
 - Store department codes and names.
 - Manage department contact information.
-- Associate users and academic information with departments.
+- Associate students and faculty with departments.
+- Organize academic records department-wise.
 
 ### 4.4 Academic Management
 
-Academic management organizes the university's academic structure.
+The academic module organizes the university's academic structure.
 
 It includes:
 
-- Degree program management.
+- Degree program creation.
 - Course and subject management.
 - Course credits and course types.
 - Semester organization.
 - Academic section creation.
 - Admission batch information.
-- Student capacity information.
+- Student capacity management.
 - Program-to-course associations.
 
 ### 4.5 Timetable Management
 
-The timetable module is designed to organize class schedules and university resources.
+The timetable module is designed to coordinate academic schedules and university resources.
 
-Its functionality includes:
+Features include:
 
-- Classroom and laboratory records.
+- Classroom and laboratory management.
 - Room capacity and room types.
 - Faculty allocation.
+- Course allocation.
 - Section allocation.
-- Course scheduling.
 - Day and time selection.
-- Schedule conflict prevention through database constraints.
+- Timetable scheduling.
+- Database-level schedule conflict prevention.
 
 ### 4.6 Student Portal
 
-The student portal provides a dedicated student-facing workspace.
+The student portal provides students with a dedicated interface to access academic information.
 
-The interface includes:
+Features include:
 
 - Student dashboard.
 - My Courses.
@@ -137,114 +142,276 @@ The interface includes:
 - My Profile.
 - Student academic information.
 
-### 4.7 Attendance Management
+### 4.7 Faculty Portal
 
-The attendance module provides an interface for managing student attendance records and viewing attendance information.
+The faculty interface is designed to provide faculty members with access to their university-related information and academic activities.
 
-### 4.8 Examinations and Results
+Planned and developed interface areas include:
 
-The examination module provides an interface for organizing examination-related information and academic results.
+- Faculty dashboard.
+- Faculty profile.
+- Assigned courses.
+- Timetable information.
+- Student-related academic activities.
+- Attendance-related activities.
 
-### 4.9 Calendar and Announcements
+### 4.8 Attendance Management
 
-The system includes database support for university calendar events and announcements, including publication and audience-related information.
+The attendance module provides an interface for recording and managing student attendance information.
 
-> **Implementation status:** UniVerse is a developing academic software project. The major interfaces, backend services, database structures and sample academic workflows have been implemented to varying degrees. Some academic and timetable operations still require end-to-end API and UI verification. A module's presence in the interface does not necessarily mean every operation is fully complete.
+### 4.9 Examinations and Results
+
+The examination module provides an interface for examination-related information and academic results.
+
+### 4.10 Calendar and Announcements
+
+The system includes database support for university calendar events and announcements, including publication dates and audience-related information.
+
+> **Implementation status:** UniVerse is an academic project prototype. Its major interfaces, database structures, backend services and sample workflows have been developed to varying degrees. Some modules still require additional end-to-end testing and API/UI integration. The presence of a screen does not mean every operation is production-ready.
+
+---
 
 ## 5. Technology Stack
 
-| Technology | Purpose |
-|---|---|
-| C++17 | Main backend programming language |
-| Drogon | C++ web framework and REST API server |
-| PostgreSQL | Relational database |
-| SQL | Database schema, migrations and queries |
-| libsodium | Secure password hashing |
-| React | Frontend user interface |
-| TypeScript | Frontend application logic and type safety |
-| HTML5 | Application structure |
-| CSS3 | Layout, styling and responsive design |
-| Vite | Frontend development server and build tool |
-| CMake | C++ build configuration |
-| Git and GitHub | Version control and collaboration |
+| Technology | Purpose                               |
+| ---------- | ------------------------------------- |
+| C++17      | Primary backend programming language  |
+| Drogon     | C++ web framework                     |
+| PostgreSQL | Relational database                   |
+| SQL        | Database schema and queries           |
+| libsodium  | Password hashing                      |
+| React      | Frontend user interface               |
+| TypeScript | Frontend logic and type safety        |
+| HTML5      | Web page structure                    |
+| CSS3       | Styling and responsive layouts        |
+| Vite       | Frontend development and build tool   |
+| CMake      | C++ build configuration               |
+| Git        | Version control                       |
+| GitHub     | Source code hosting and collaboration |
 
 ### Why C++?
 
 C++ was selected as the primary backend language to demonstrate strong programming fundamentals and practical systems development.
 
-The backend uses C++ for:
+It is used for:
 
-- Server-side application logic.
+- Backend application logic.
 - REST API controllers.
-- Business and service-layer operations.
-- Database repository operations.
 - Authentication and session handling.
-- Validation and error handling.
+- Service-layer operations.
+- Database repository operations.
+- Input validation.
+- Error handling.
 - Integration with PostgreSQL.
 
-React and TypeScript are used for the frontend so that users can interact with the C++ backend through a modern web interface.
+React and TypeScript are used for the frontend, while C++ handles the core backend processing and business logic.
 
-## 6. System Architecture
+---
+
+# 6. Object-Oriented Programming Concepts Used in UniVerse
+
+Object-Oriented Programming (OOP) is an important part of the UniVerse backend architecture.
+
+The backend is organized using classes and objects that represent system components such as controllers, services, repositories and domain models.
+
+The following concepts explain how OOP is applied in the project.
+
+## 6.1 Classes and Objects
+
+A **class** is a blueprint that defines data members and functions. An **object** is an instance of a class.
+
+In UniVerse, classes are used to represent backend components and organize related functionality.
+
+**Where used:**
+
+- `AuthController`
+- `AdminController`
+- `AcademicController`
+- `TimetableController`
+- `StudentController`
+- `AuthService`
+- `AcademicService`
+- `UserRepository`
+- `AcademicRepository`
+- `TimetableRepository`
+
+For example, the `AcademicService` class groups operations related to academic programs, courses and sections.
+
+This makes the code easier to organize, maintain and extend.
+
+## 6.2 Encapsulation
+
+**Encapsulation** means combining data and the functions that operate on that data into a class while controlling access to its internal implementation.
+
+In UniVerse, encapsulation is used in the service and repository layers.
+
+**Where used:**
+
+- Database connection and query handling are kept inside repository classes.
+- Internal database operations are accessed through repository methods.
+- Controllers do not need to contain the SQL implementation.
+- Services expose methods for performing application operations.
+
+For example, the repository layer handles SQL queries internally and exposes operations such as retrieving or creating academic records.
+
+This reduces direct access to internal database logic and makes changes easier to manage.
+
+## 6.3 Abstraction
+
+**Abstraction** means hiding complex implementation details and exposing only the necessary operations.
+
+UniVerse uses abstraction through its layered backend architecture.
+
+**Where used:**
+
+- Controllers communicate with service classes.
+- Service classes coordinate business operations.
+- Repository classes handle database queries.
+- The frontend communicates with backend functionality through REST API endpoints.
+
+For example, the frontend can request academic programs through an API without knowing how the C++ repository executes its PostgreSQL query.
+
+The repository implementation is hidden behind a simpler interface.
+
+## 6.4 Inheritance
+
+**Inheritance** allows one class to acquire or extend the properties and functionality of another class.
+
+In UniVerse, the Drogon framework provides framework-level class and handler abstractions that the backend integrates with.
+
+The application primarily organizes its own functionality using separate controller, service and repository classes rather than relying on a large custom inheritance hierarchy.
+
+This keeps the application structure modular and focused on individual responsibilities.
+
+## 6.5 Polymorphism
+
+**Polymorphism** allows a common interface or operation to support different implementations or behaviours.
+
+UniVerse uses callback-driven asynchronous database operations through the Drogon ORM framework.
+
+**Where used:**
+
+- Database success callbacks.
+- Database error callbacks.
+- Asynchronous query result handling.
+- Request and response handler integration.
+
+For example, a repository operation can trigger a success callback when a database query completes or an error callback when the query fails.
+
+This allows the calling service or controller to handle different outcomes without directly managing the database execution process.
+
+## 6.6 Composition
+
+**Composition** means building larger components by combining smaller objects or classes.
+
+This is an important part of UniVerse's architecture.
+
+**Where used:**
+
+- Services use repository objects to access database operations.
+- Controllers coordinate with service components.
+- The application combines authentication, academic, department and timetable functionality.
+
+For example:
+
+```text
+AcademicController
+        |
+        v
+AcademicService
+        |
+        v
+AcademicRepository
+        |
+        v
+PostgreSQL Database
+```
+
+Each component has its own responsibility, and together they perform a complete operation.
+
+## 6.7 Summary of OOP Concepts
+
+| OOP Concept         | How it is applied in UniVerse                                 |
+| ------------------- | ------------------------------------------------------------- |
+| Classes and Objects | Controllers, services, repositories and domain models         |
+| Encapsulation       | Internal database and business logic grouped inside classes   |
+| Abstraction         | Service and repository interfaces hide implementation details |
+| Inheritance         | Framework-level class and handler abstractions                |
+| Polymorphism        | Asynchronous callbacks and handler interfaces                 |
+| Composition         | Controllers, services and repositories work together          |
+
+**Why OOP is useful in UniVerse:**
+
+- Improves code organization.
+- Separates different responsibilities.
+- Reduces unnecessary code duplication.
+- Makes the backend easier to maintain.
+- Helps extend the system with additional modules.
+- Supports structured development and debugging.
+
+---
+
+# 7. System Architecture
 
 UniVerse follows a layered client-server architecture.
 
 ```text
-                  USER
+                 USERS
                    |
                    v
-         React + TypeScript Frontend
+       React + TypeScript Frontend
                    |
                    v
-             Vite Dev Server
+             Vite Development
                    |
                    v
              REST API Requests
                    |
                    v
-          C++ / Drogon Backend
+           C++ / Drogon Backend
                    |
-        +----------+----------+
-        |          |          |
-        v          v          v
+        +----------+-----------+
+        |          |           |
+        v          v           v
    Controllers  Services  Authentication
-        |          |          |
-        +----------+----------+
+        |          |           |
+        +----------+-----------+
                    |
                    v
-           Repository Layer
+            Repository Layer
                    |
                    v
              PostgreSQL
                    |
                    v
-          University Records
+       University Management Records
 ```
 
 ### Architecture Layers
 
 **Frontend Layer**
 
-Responsible for presenting login forms, dashboards, data tables, management screens and student-facing pages.
+Responsible for login forms, dashboards, management pages, forms, tables and student-facing screens.
 
 **Controller Layer**
 
-Receives HTTP requests, validates request data, checks access permissions and returns API responses.
+Receives HTTP requests, validates input and access permissions, and prepares API responses.
 
 **Service Layer**
 
-Contains application logic and coordinates operations between controllers and repositories.
+Contains business logic and coordinates operations between controllers and repositories.
 
 **Repository Layer**
 
-Handles database communication using parameterized PostgreSQL queries.
+Handles database queries and communication with PostgreSQL.
 
 **Database Layer**
 
-Stores users, profiles, departments, academic structures, classroom information, timetable entries and university updates.
+Stores users, profiles, departments, academic programs, courses, sections, rooms, timetables and university updates.
 
-## 7. Backend Structure
+---
 
-The backend is organized into controllers, services, repositories, domain models and utilities.
+# 8. Backend Project Structure
 
 ```text
 backend/
@@ -267,37 +434,39 @@ backend/
 │   ├── services/
 │   └── main.cc
 │
-├── database/
 ├── tests/
 ├── tools/
+├── uploads/
 └── CMakeLists.txt
 ```
 
 ### Backend Responsibilities
 
 - `main.cc`: Application entry point and route registration.
-- `controllers/`: HTTP endpoints and request/response handling.
-- `services/`: Business logic and application workflows.
-- `repositories/`: PostgreSQL query execution.
-- `domain/`: Core application models.
-- `middleware/`: Request-level processing and access-related components.
-- `tools/`: Supporting utilities such as administrator bootstrap tools.
-- `CMakeLists.txt`: Backend build configuration.
+- `controllers/`: HTTP endpoints and request/response processing.
+- `services/`: Application logic and workflows.
+- `repositories/`: PostgreSQL queries.
+- `domain/`: Data models and domain structures.
+- `middleware/`: Request and access-related components.
+- `tools/`: Supporting utilities, including administrator bootstrap functionality.
+- `CMakeLists.txt`: C++ build configuration.
 
-## 8. Frontend Structure
+---
+
+# 9. Frontend Project Structure
 
 ```text
 frontend/
 │
 ├── public/
 ├── src/
+│   ├── assets/
 │   ├── pages/
 │   │   ├── admin/
 │   │   ├── auth/
 │   │   └── student/
 │   │
 │   ├── services/
-│   ├── assets/
 │   ├── App.tsx
 │   ├── App.css
 │   ├── index.css
@@ -308,13 +477,15 @@ frontend/
 └── vite.config.ts
 ```
 
-The frontend communicates with the backend through HTTP API requests. During local development, the Vite development server proxies `/api` requests to the C++ backend.
+The frontend communicates with the C++ backend through HTTP API requests. During local development, Vite forwards `/api` requests to the backend.
 
-## 9. Database Design
+---
+
+# 10. Database Design
 
 PostgreSQL is used as the primary relational database.
 
-The database is designed to maintain relationships between university users, departments, academic programs, courses, sections, rooms and timetable records.
+The database maintains relationships between users, departments, academic programs, courses, sections, classrooms and timetable entries.
 
 ### Main Database Entities
 
@@ -333,81 +504,86 @@ The database is designed to maintain relationships between university users, dep
 
 ### Database Migrations
 
-Database migrations are maintained in:
+Database migrations are stored in:
 
 `database/migrations/`
 
-| Migration | Purpose |
-|---|---|
-| `001_users.sql` | User accounts and authentication-related fields |
-| `002_departments_profiles.sql` | Departments and student/faculty profiles |
-| `003_temporary_credentials.sql` | Temporary credential support |
-| `004_department_management.sql` | Department management structures |
-| `005_academic_management.sql` | Academic programs, courses and sections |
-| `006_timetable_management.sql` | Rooms and timetable structures |
-| `007_calendar_announcements.sql` | Calendar events and announcements |
+| Migration                        | Purpose                                  |
+| -------------------------------- | ---------------------------------------- |
+| `001_users.sql`                  | User accounts and authentication fields  |
+| `002_departments_profiles.sql`   | Departments and student/faculty profiles |
+| `003_temporary_credentials.sql`  | Temporary credential support             |
+| `004_department_management.sql`  | Department management                    |
+| `005_academic_management.sql`    | Academic programs, courses and sections  |
+| `006_timetable_management.sql`   | Classroom and timetable structures       |
+| `007_calendar_announcements.sql` | Calendar events and announcements        |
 
-Migrations should be applied in numerical order.
+Migrations should be applied in numerical order when setting up a fresh database.
 
-### Database Relationships
+### Important Relationships
 
-Examples of important relationships include:
-
-- A department can have multiple students and faculty members.
+- A department can contain multiple students and faculty members.
 - A department can offer multiple academic programs.
 - An academic program can contain multiple courses.
 - An academic program can have multiple sections.
 - A section can have multiple timetable entries.
 - A timetable entry is associated with a course, faculty member and classroom.
+- Student profiles can be associated with academic programs and sections.
 
-The database also uses foreign keys, uniqueness constraints, validation checks and timetable overlap constraints to help maintain data integrity.
+The database uses foreign keys, unique constraints, validation checks and timetable overlap constraints to help maintain data integrity.
 
-## 10. Authentication and Security
+---
 
-The application includes several security-related mechanisms:
+# 11. Authentication and Security
 
-- Password hashing with libsodium.
+UniVerse includes the following security-related mechanisms:
+
+- Password hashing using libsodium.
 - Server-side session-based authentication.
 - Role checks for administrative API operations.
 - Parameterized database queries.
 - Account status validation.
-- Input validation in backend request handling.
+- Backend input validation.
 - HTTP-only session cookies.
 - Separation of local configuration from committed source files.
 
-Passwords and database credentials should never be committed to GitHub.
+Passwords and database credentials must never be committed to GitHub.
 
-**Security note:** This project is an academic prototype and should not be deployed with real university or student data without further security review, HTTPS deployment, CSRF protection, request rate limiting, credential-change enforcement and production configuration hardening.
+**Security note:** UniVerse is an academic prototype. Before production deployment with real student information, additional hardening is required, including HTTPS, CSRF protection, request rate limiting, password reset and first-login password change enforcement, audit logging and production configuration management.
 
-## 11. API Overview
+---
 
-The backend exposes versioned REST API endpoints under `/api/v1`.
+# 12. API Overview
+
+The C++ backend exposes REST API endpoints under `/api/v1`.
 
 Examples of implemented endpoint groups include:
 
-| Endpoint | Method | Purpose |
-|---|---|---|
-| `/api/v1/health` | GET | Backend health check |
-| `/api/v1/health/database` | GET | Database connectivity check |
-| `/api/v1/auth/login` | POST | User authentication |
-| `/api/v1/auth/me` | GET | Current authenticated user |
-| `/api/v1/auth/logout` | POST | End the current session |
-| `/api/v1/admin/departments` | GET | Retrieve departments |
-| `/api/v1/admin/students` | POST | Create a student account |
-| `/api/v1/admin/faculty` | POST | Create a faculty account |
-| `/api/v1/admin/academic/programs` | GET/POST | Retrieve or create academic programs |
-| `/api/v1/admin/academic/courses` | GET/POST | Retrieve or create academic courses |
-| `/api/v1/admin/academic/sections` | GET/POST | Retrieve or create academic sections |
+| Endpoint                          | Method   | Purpose                     |
+| --------------------------------- | -------- | --------------------------- |
+| `/api/v1/health`                  | GET      | Backend health check        |
+| `/api/v1/health/database`         | GET      | Database connectivity check |
+| `/api/v1/auth/login`              | POST     | User authentication         |
+| `/api/v1/auth/me`                 | GET      | Current authenticated user  |
+| `/api/v1/auth/logout`             | POST     | End the current session     |
+| `/api/v1/admin/departments`       | GET      | Retrieve departments        |
+| `/api/v1/admin/students`          | POST     | Create student accounts     |
+| `/api/v1/admin/faculty`           | POST     | Create faculty accounts     |
+| `/api/v1/admin/academic/programs` | GET/POST | Retrieve or create programs |
+| `/api/v1/admin/academic/courses`  | GET/POST | Retrieve or create courses  |
+| `/api/v1/admin/academic/sections` | GET/POST | Retrieve or create sections |
 
-Additional timetable, student, calendar and announcement endpoints are registered in the backend controllers.
+Additional timetable, student, calendar and announcement endpoints are registered through the backend controllers.
 
-## 12. Installation and Setup
+---
 
-The following instructions describe a local development setup on Ubuntu/Linux.
+# 13. Installation and Setup
 
-### Prerequisites
+The following instructions describe local development on Ubuntu/Linux.
 
-Install the required development tools and libraries:
+## Prerequisites
+
+Install the required tools and libraries:
 
 ```bash
 sudo apt update
@@ -426,9 +602,9 @@ sudo apt install -y \
   libdrogon-dev
 ```
 
-The frontend uses Node.js. Node.js 24 was used during development.
+Install Node.js 24 and npm for the frontend.
 
-Check installed versions:
+Check versions:
 
 ```bash
 g++ --version
@@ -438,16 +614,15 @@ node -v
 npm -v
 ```
 
-### Step 1: Clone the repository
+## Step 1: Clone the Repository
 
 ```bash
 git clone https://github.com/Nanda-max926/ai.git
+
 cd ai
 ```
 
-### Step 2: Create the PostgreSQL database
-
-Create a PostgreSQL database and application user.
+## Step 2: Create the PostgreSQL User and Database
 
 Open the PostgreSQL shell:
 
@@ -455,53 +630,36 @@ Open the PostgreSQL shell:
 sudo -u postgres psql
 ```
 
-Run the following SQL, replacing the placeholder password with a strong local password:
+Create the application user and database:
 
 ```sql
-CREATE USER universe_user WITH PASSWORD 'CHANGE_THIS_LOCAL_PASSWORD';
+CREATE USER universe_user WITH PASSWORD 'CHANGE_THIS_PASSWORD';
+
 CREATE DATABASE universe_db OWNER universe_user;
+
 \q
 ```
 
-Do not put the real password in this README or commit it to GitHub.
+Replace the example password with your own secure local password.
 
-### Step 3: Apply database migrations
+## Step 3: Apply Database Migrations
 
 From the repository root:
 
 ```bash
-psql -h 127.0.0.1 -U universe_user -d universe_db \
-  -v ON_ERROR_STOP=1 \
-  -f database/migrations/001_users.sql
-
-psql -h 127.0.0.1 -U universe_user -d universe_db \
-  -v ON_ERROR_STOP=1 \
-  -f database/migrations/002_departments_profiles.sql
-
-psql -h 127.0.0.1 -U universe_user -d universe_db \
-  -v ON_ERROR_STOP=1 \
-  -f database/migrations/003_temporary_credentials.sql
-
-psql -h 127.0.0.1 -U universe_user -d universe_db \
-  -v ON_ERROR_STOP=1 \
-  -f database/migrations/004_department_management.sql
-
-psql -h 127.0.0.1 -U universe_user -d universe_db \
-  -v ON_ERROR_STOP=1 \
-  -f database/migrations/005_academic_management.sql
-
-psql -h 127.0.0.1 -U universe_user -d universe_db \
-  -v ON_ERROR_STOP=1 \
-  -f database/migrations/006_timetable_management.sql
-
-psql -h 127.0.0.1 -U universe_user -d universe_db \
-  -v ON_ERROR_STOP=1 \
-  -f database/migrations/007_calendar_announcements.sql
+for file in database/migrations/00*.sql; do
+    echo "Applying $file"
+    psql -X -v ON_ERROR_STOP=1 \
+      -h 127.0.0.1 \
+      -U universe_user \
+      -d universe_db \
+      -f "$file" || exit 1
+done
 ```
 
-Enter the PostgreSQL application user's password when prompted.
+Enter the PostgreSQL password when prompted.
 
-### Step 4: Configure the backend
+## Step 4: Configure the Backend
 
 Copy the example configuration:
 
@@ -515,38 +673,43 @@ Edit the local configuration:
 code backend/config/config.json
 ```
 
-Update the PostgreSQL connection settings and other local configuration values according to the example file and your environment.
+Update the PostgreSQL connection details and other required settings according to the example configuration.
 
-**Never commit `backend/config/config.json`.**
+**Do not commit `backend/config/config.json` or any local password.**
 
-### Step 5: Build the C++ backend
+## Step 5: Build the C++ Backend
 
 ```bash
 cd backend
 
 cmake -S . -B build
+
 cmake --build build -j2
 ```
 
-### Step 6: Run the backend
+## Step 6: Run the Backend
 
 ```bash
 ./build/universe_api
 ```
 
-The backend is configured for local development on:
+The backend runs locally on:
 
 `http://127.0.0.1:8080`
 
-Health checks:
+Check backend health:
 
 ```bash
 curl http://127.0.0.1:8080/api/v1/health
+```
 
+Check database connectivity:
+
+```bash
 curl http://127.0.0.1:8080/api/v1/health/database
 ```
 
-### Step 7: Install and run the frontend
+## Step 7: Install and Run the Frontend
 
 Open another terminal:
 
@@ -554,111 +717,167 @@ Open another terminal:
 cd frontend
 
 npm install
+
 npm run dev
 ```
 
-Open the local application:
+Open the application:
 
 `http://127.0.0.1:5173`
 
-The Vite proxy forwards `/api` requests to the local Drogon backend.
+The Vite proxy forwards `/api` requests to the C++ backend.
 
-### Step 8: Build the frontend for production
+## Step 8: Build the Frontend
 
 ```bash
 cd frontend
+
 npm run build
 ```
 
-The generated frontend build is placed in the `dist/` directory.
-
-## 13. Local Development Notes
-
-- Run PostgreSQL before starting the backend.
-- Keep the backend running while using the frontend.
-- Start the frontend in a separate terminal.
-- Apply migrations before using database-backed modules.
-- Create or bootstrap an administrator account using the provided backend bootstrap utility where applicable.
-- Create departments, accounts and academic records before testing dependent workflows.
-- Timetable entries require valid sections, courses, faculty and rooms.
-- A student's courses and timetable depend on the student's academic program and section assignment.
-- Local development records are not automatically included in a fresh database.
-
-## 14. Project Demonstration Workflow
-
-A useful demonstration of UniVerse follows this sequence:
-
-1. Start PostgreSQL.
-2. Start the C++ backend.
-3. Start the React frontend.
-4. Sign in using the administrator account.
-5. Open the administrator dashboard.
-6. View and manage university departments.
-7. Create or review academic programs and courses.
-8. Create student and faculty accounts.
-9. Create academic sections and classroom records.
-10. Configure a timetable.
-11. Sign in through the student login option.
-12. Review the student dashboard and available academic information.
-
-Some workflows may require additional configuration or API fixes depending on the database state.
-
-## 15. Future Enhancements
-
-Potential future improvements include:
-
-- Complete faculty-specific dashboards and workflows.
-- Full student and faculty profile management.
-- End-to-end attendance recording and reporting.
-- Examination scheduling and result publication.
-- Complete calendar and announcement management.
-- Notifications for students and faculty.
-- Timetable editing and cancellation.
-- Search, filtering and advanced reporting.
-- Password reset and first-login password change workflows.
-- Automated unit, integration and API tests.
-- Production deployment with HTTPS and hardened security.
-- Database backup and recovery procedures.
-
-## 16. Contributors and Participants
-
-The project is maintained in the GitHub repository:
-
-**Repository owner:** Nanda-max926
-
-**Contributors shown on the GitHub repository:**
-
-- **Nanda-max926** — Project development and repository maintenance.
-- **Second contributor:** Add the collaborator's full name and GitHub username here.
-
-Contributor responsibilities should be updated to reflect the actual work performed by each participant.
-
-## 17. Academic Project Information
-
-**Project Name:** UniVerse — University Management System
-
-**Project Type:** Web-Based Application / University Management System
-
-**Primary Backend Language:** C++
-
-**Frontend:** React and TypeScript
-
-**Database:** PostgreSQL
-
-**Backend Framework:** Drogon
-
-**Build System:** CMake
-
-**Version Control:** Git and GitHub
-
-**Repository:** https://github.com/Nanda-max926/ai
-
-## 18. License
-
-This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+The production frontend files are generated in the `dist/` directory.
 
 ---
 
-<p align="center">
-  <strong>UniVerse — Bringing University Operations Together.</strong>
-</p>
+# 14. Local Development Notes
+
+- Start PostgreSQL before starting the backend.
+- Keep the backend running while using the frontend.
+- Run the frontend in a separate terminal.
+- Apply all required migrations before using database-backed modules.
+- Configure the local database connection before running the backend.
+- Create or bootstrap an administrator account before testing administrative operations.
+- Create departments, accounts and academic records before testing dependent workflows.
+- Timetable entries require valid sections, courses, faculty members and classrooms.
+- Student academic information depends on the student's program and section assignment.
+- Sample records created on one local machine are not automatically included in a fresh database.
+
+---
+
+# 15. Project Demonstration Workflow
+
+A recommended demonstration sequence is:
+
+1. Start PostgreSQL.
+2. Start the C++ Drogon backend.
+3. Start the React frontend.
+4. Sign in using the administrator account.
+5. Open the administrator dashboard.
+6. View university departments.
+7. Review academic programs and courses.
+8. Create or review student and faculty accounts.
+9. Configure academic sections.
+10. Review classroom and timetable records.
+11. Sign in through the student login option.
+12. Review the student portal and available academic information.
+
+Some workflows may require additional database configuration or API/UI integration fixes depending on the local database state.
+
+---
+
+# 16. Team Members and Responsibilities
+
+UniVerse is developed as a collaborative team project by three members.
+
+| Team Member | Primary Responsibility                         |
+| ----------- | ---------------------------------------------- |
+| **Nanda**   | C++ Backend Development                        |
+| **Deevan**  | Frontend Development                           |
+| **Manoj**   | Database Management, Testing and Documentation |
+
+### Nanda — Backend Development
+
+Responsibilities:
+
+- C++17 backend implementation.
+- Drogon framework integration.
+- REST API development.
+- Authentication and session management.
+- Controller and service-layer implementation.
+- Repository-layer database integration.
+- Backend validation and error handling.
+- Backend build configuration using CMake.
+
+### Deevan — Frontend Development
+
+Responsibilities:
+
+- React and TypeScript application development.
+- Login interface and role selection.
+- Administrator dashboard.
+- Student portal interface.
+- Faculty-facing interface.
+- Academic management screens.
+- Timetable and attendance interfaces.
+- CSS styling and responsive layouts.
+- Frontend-to-backend API integration.
+
+### Manoj — Database, Testing and Documentation
+
+Responsibilities:
+
+- PostgreSQL database design.
+- Relational table structures.
+- SQL schema development.
+- Database migrations.
+- Foreign-key and uniqueness constraints.
+- Sample academic data and database verification.
+- Testing database operations and application workflows.
+- Project documentation and README maintenance.
+
+**Team Note:** This is the project's responsibility allocation. Individual contribution descriptions should reflect the actual work completed by each member.
+
+---
+
+# 17. Future Enhancements
+
+Possible future improvements include:
+
+- Complete faculty-specific dashboards and workflows.
+- Full student and faculty profile management.
+- Complete attendance recording and reporting.
+- Examination scheduling and result publication.
+- Full calendar and announcement management.
+- Notifications for students and faculty.
+- Timetable editing and cancellation.
+- Search, filtering and advanced reporting.
+- Password reset and first-login password change.
+- Automated unit and integration tests.
+- Production deployment with HTTPS.
+- Database backup and recovery mechanisms.
+- Audit logging and stronger access controls.
+
+---
+
+# 18. Academic Project Information
+
+| Category          | Details                                                                  |
+| ----------------- | ------------------------------------------------------------------------ |
+| Project Name      | UniVerse — University Management System                                  |
+| Project Type      | Web-Based Application                                                    |
+| Primary Language  | C++                                                                      |
+| Backend Framework | Drogon                                                                   |
+| Frontend          | React and TypeScript                                                     |
+| Database          | PostgreSQL                                                               |
+| Build System      | CMake                                                                    |
+| Version Control   | Git and GitHub                                                           |
+| Team Members      | Nanda, Deevan and Manoj                                                  |
+| Repository        | [https://github.com/Nanda-max926/ai](https://github.com/Nanda-max926/ai) |
+
+---
+
+# 19. License
+
+This project is distributed under the MIT License.
+
+See the [LICENSE](LICENSE) file for details.
+
+---
+
+\<p align="center">
+&#x20; \<strong>UniVerse — Bringing University Operations Together.\</strong>
+\</p>
+
+\<p align="center">
+&#x20; Developed with C++, React, TypeScript and PostgreSQL.
+\</p>
